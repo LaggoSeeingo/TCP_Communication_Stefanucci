@@ -1,6 +1,8 @@
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,16 +33,22 @@ public class Client {
         
     }
     
-    public void connetti(String nomeServer, int portaServer){
-    
+    public void connetti(String nomeServer, int portaServer) {
+
         try {
             socket = new Socket(nomeServer, portaServer);
             System.out.println("1) Connessione con il server avvenuta");
+        } catch (ConnectException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Errore nella connessione col server");
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Errore nella risoluzione del nome del server");
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("Errore nello stabilimento della connessione con il server");
+
         }
-                
     }
     
     

@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -26,6 +27,15 @@ public class Server {
         try {
             serverSocket = new ServerSocket(porta);
             System.out.println("1) Server in ascolto sulla porta "+porta);
+        } catch (BindException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Errore, porta già occupata");
+        } catch (IllegalArgumentException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Errore, porta non esistente");
+        }catch (SecurityException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Errore, la porta è protetta, non si hanno i permessi per accedere");
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("Errore del server nella fase di ascolto");
