@@ -57,12 +57,30 @@ public class Server {
     }
     
     public void chiudi(){
-    
+        if(clientSocket != null){
+            try {
+                clientSocket.close();
+                System.out.println("3) Chiusura del DataSocket (client) avvenuta con successo");
+            } catch (IOException e) {
+                System.err.println("Errore nella chiusura del clientSocket");
+            }
+        }else{
+            System.out.println("Il clientSocket non può essere chiuso in quanto non è stato istanziato");
+        }
     
     }
     
     public void termina(){
-    
+        if(serverSocket != null){
+            try {
+                serverSocket.close();
+                System.out.println("4) Chiusura del DataSocket (server) avvenuta con successo");
+            } catch (IOException e) {
+                System.err.println("Errore nella chiusura del serverSocket");
+            }
+        }else{
+            System.out.println("Il serverSocket non può essere chiuso in quanto non è stato istanziato");
+        }
     
     }
     

@@ -21,12 +21,13 @@ public class Client {
     
     
     public Client(String nome){
-    
+        this.nome = nome;
         
     }
     
     public Client(String nome, String colore){
-    
+        this.nome = nome;
+        this.colore = colore;
         
     }
     
@@ -51,6 +52,20 @@ public class Client {
     public void leggi(){
     
     
+    }
+
+    public void chiudi() {
+
+        if (socket != null) {
+            try {
+                socket.close();
+                System.out.println("2) Chiusura del DataSocket avvenuta con successo");
+            } catch (IOException e) {
+                System.err.println("Errore nella chiusura del socket");
+            }
+        }else{
+            System.out.println("Il socket non può essere chiuso in quanto non è stato istanziato");
+        }
     }
     
 }

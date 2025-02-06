@@ -14,8 +14,9 @@ public class main_client {
      */
     public static void main(String[] args) {
         
-        Client c = new Client("localhost");
+        Client c = new Client("HostName");
         c.connetti("localhost",2000);
+        c.chiudi();
     }
     
 }
