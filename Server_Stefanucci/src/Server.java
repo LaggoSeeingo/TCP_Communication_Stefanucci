@@ -74,7 +74,7 @@ public class Server {
         if(serverSocket != null){
             try {
                 serverSocket.close();
-                System.out.println("4) Chiusura del DataSocket (server) avvenuta con successo");
+                System.out.println("4) Chiusura del DataSocket (server) avvenuta con successo, il server non accetta più connessioni");
             } catch (IOException e) {
                 System.err.println("Errore nella chiusura del serverSocket");
             }
