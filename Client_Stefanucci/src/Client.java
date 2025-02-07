@@ -72,7 +72,7 @@ public class Client {
                 System.err.println("Errore nella chiusura del socket");
             }
         }else{
-            System.out.println("Il socket non può essere chiuso in quanto non è stato istanziato");
+            System.err.println("Il socket non può essere chiuso in quanto non è stato istanziato");
         }
     }
     

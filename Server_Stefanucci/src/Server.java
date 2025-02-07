@@ -1,8 +1,12 @@
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,8 +21,8 @@ import java.util.logging.Logger;
  */
 public class Server {
     
-    ServerSocket serverSocket;
-    Socket clientSocket;
+    ServerSocket serverSocket = null;
+    Socket clientSocket = null;
     int porta;
     
     public Server(int porta){
@@ -57,13 +61,25 @@ public class Server {
     }
     
     public void invia(){
-    
-    
+
+        OutputStream os;
+        PrintWriter streamOut = null;
+        String messaggioOut;
+
+        try {
+            os = clientSocket.getOutputStream();
+        } catch (IOException e) {
+            System.err.println("Errore nella creazione dell'OutputStream");
+        }
+
     }
     
     public void leggi(){
-    
-    
+
+        InputStream is;
+        Scanner streamIn = null;
+        String messaggioIn;
+
     }
     
     public void chiudi(){
@@ -75,7 +91,7 @@ public class Server {
                 System.err.println("Errore nella chiusura del clientSocket");
             }
         }else{
-            System.out.println("Il clientSocket non può essere chiuso in quanto non è stato istanziato");
+            System.err.println("Il clientSocket non può essere chiuso in quanto non è stato istanziato");
         }
     
     }
@@ -89,7 +105,7 @@ public class Server {
                 System.err.println("Errore nella chiusura del serverSocket");
             }
         }else{
-            System.out.println("Il serverSocket non può essere chiuso in quanto non è stato istanziato");
+            System.err.println("Il serverSocket non può essere chiuso in quanto non è stato istanziato");
         }
     
     }
