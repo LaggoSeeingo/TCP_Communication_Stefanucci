@@ -19,7 +19,7 @@ public class Client {
     
     String nome;
     String colore = "\u001B[36m";
-    String coloreErr = "\u001B[33m"
+    String coloreErr = "\u001B[33m";
     static final String RESET = "\u001B[0m";
     Socket socket;
     
