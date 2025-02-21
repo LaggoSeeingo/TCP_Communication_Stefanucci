@@ -46,6 +46,9 @@ public class main_server {
             System.out.println("Client num."+i);
 
             s.attendi();
+            String messaggio = s.leggi();
+            System.out.println("Messaggio del client: " + messaggio);
+            s.invia("yo man");
             s.chiudi();
             i++;
         }

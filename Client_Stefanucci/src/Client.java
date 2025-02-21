@@ -1,5 +1,5 @@
 
-import java.io.IOException;
+import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -22,6 +22,9 @@ public class Client {
     String coloreErr = "\u001B[33m";
     static final String RESET = "\u001B[0m";
     Socket socket;
+
+    private BufferedReader in;
+    private BufferedWriter out;
     
     
     public Client(String nome){
@@ -39,6 +42,8 @@ public class Client {
 
         try {
             socket = new Socket(nomeServer, portaServer);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             System.out.println(colore + "1) Connessione con il server avvenuta" + RESET);
         } catch (ConnectException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,14 +59,28 @@ public class Client {
     }
     
     
-    public void scrivi(){
-    
+    public void scrivi(String messaggio){
+
+        try {
+            out.write(colore + messaggio);
+            out.newLine(); //terminatore riga
+            out.flush();
+        } catch (IOException e) {
+            System.err.println(coloreErr + "Errore nella scrittura" + RESET);
+        }
+
     
     }
     
-    public void leggi(){
-    
-    
+    public String leggi(){
+
+        try {
+            return in.readLine();
+        } catch (IOException e) {
+            System.err.println(coloreErr + "Errore nella lettura" + RESET);
+            return null;
+        }
+
     }
 
     public void chiudi() {

@@ -16,6 +16,9 @@ public class main_client {
         
         Client c = new Client("HostName");
         c.connetti("localhost",2000);
+        c.scrivi("yo bro");
+        String risposta = c.leggi();
+        System.out.println("Risposta del server: " + risposta);
         c.chiudi();
     }
     
