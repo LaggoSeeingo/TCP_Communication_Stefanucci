@@ -18,7 +18,9 @@ import java.util.logging.Logger;
 public class Client {
     
     String nome;
-    String colore;
+    String colore = "\u001B[36m";
+    String coloreErr = "\u001B[33m"
+    static final String RESET = "\u001B[0m";
     Socket socket;
     
     
@@ -37,16 +39,16 @@ public class Client {
 
         try {
             socket = new Socket(nomeServer, portaServer);
-            System.out.println("1) Connessione con il server avvenuta");
+            System.out.println(colore + "1) Connessione con il server avvenuta" + RESET);
         } catch (ConnectException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println("Errore nella connessione col server");
+            System.err.println(coloreErr + "Errore nella connessione col server" + RESET);
         } catch (UnknownHostException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println("Errore nella risoluzione del nome del server");
+            System.err.println(coloreErr + "Errore nella risoluzione del nome del server" + RESET);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println("Errore nello stabilimento della connessione con il server");
+            System.err.println(coloreErr + "Errore nello stabilimento della connessione con il server" + RESET);
 
         }
     }
@@ -67,12 +69,12 @@ public class Client {
         if (socket != null) {
             try {
                 socket.close();
-                System.out.println("2) Chiusura del DataSocket avvenuta con successo");
+                System.out.println(colore + "2) Chiusura del DataSocket avvenuta con successo" + RESET);
             } catch (IOException e) {
-                System.err.println("Errore nella chiusura del socket");
+                System.err.println(coloreErr + "Errore nella chiusura del socket" + RESET);
             }
         }else{
-            System.out.println("Il socket non può essere chiuso in quanto non è stato istanziato");
+            System.out.println(coloreErr + "Il socket non può essere chiuso in quanto non è stato istanziato" + RESET);
         }
     }
     
